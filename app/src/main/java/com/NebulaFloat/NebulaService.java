@@ -42,7 +42,7 @@ public class NebulaService extends Service {
                 .build();
         startForeground(1, n, ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE);
 
-        String file = "/sdcard/widget.html";
+        String file = "https://raw.githubusercontent.com/AXXIRIN/nebulafloat/main/widget.html";
         int w = 320, h = 240;
         boolean input = false;
         if (in != null) {
@@ -84,7 +84,7 @@ public class NebulaService extends Service {
         s.setDomStorageEnabled(true);
         s.setAllowFileAccess(true);
         web.setWebViewClient(new WebViewClient());
-        web.loadUrl("file://" + file);
+				web.loadUrl(file);
         box.addView(web, new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
