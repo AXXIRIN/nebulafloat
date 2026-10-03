@@ -7,9 +7,9 @@
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
     <application
-        android:label="NebulaFloat"
-        android:theme="@android:style/Theme.Translucent.NoTitleBar">
-
+        android:label="𝙉𝙀𝘽𝙐𝙇𝘼"
+				android:icon="@drawable/cybercat"
+				android:theme="@android:style/Theme.Translucent.NoTitleBar">
         <activity
             android:name=".MainActivity"
             android:exported="true"
