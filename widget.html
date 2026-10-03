@@ -1,0 +1,11 @@
+<style>
+  body { margin:0; padding:16px; color:#fff; font-family:sans-serif;
+         background:rgba(20,20,20,.85); border-radius:12px; }
+  h2 { margin:0; font-size:32px; }
+</style>
+<h2 id="jam"></h2>
+<p>Edit file ini, simpan ke /sdcard/widget.html</p>
+<script>
+  const t = () => jam.textContent = new Date().toLocaleTimeString();
+  t(); setInterval(t, 1000);
+</script>
