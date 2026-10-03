@@ -77,17 +77,33 @@ public class NebulaService extends Service {
         box.addView(bar, new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT, (int) (28 * d)));
 
-        WebView web = new WebView(this);
-        web.setBackgroundColor(Color.TRANSPARENT);
-        WebSettings s = web.getSettings();
-        s.setJavaScriptEnabled(true);
-        s.setDomStorageEnabled(true);
-        s.setAllowFileAccess(true);
-        web.setWebViewClient(new WebViewClient());
-				web.loadUrl(file);
-        box.addView(web, new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+WebView web = new WebView(this);
+web.setBackgroundColor(Color.TRANSPARENT);
 
+WebSettings s = web.getSettings();
+s.setJavaScriptEnabled(true);
+s.setDomStorageEnabled(true);
+s.setAllowFileAccess(true);
+
+web.setWebViewClient(new WebViewClient());
+
+web.loadUrl("about:blank");
+
+web.postDelayed(() -> {
+    web.evaluateJavascript(
+        "fetch('" + file + "')" +
+        ".then(r => r.text())" +
+        ".then(html => {" +
+        "document.open();" +
+        "document.write(html);" +
+        "document.close();" +
+        "})" +
+        ".catch(e => {" +
+        "document.body.innerText = 'Gagal memuat HTML: ' + e;" +
+        "});",
+        null
+    );
+}, 100);
         int fl = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL;
         if (!input) fl |= WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
         final WindowManager.LayoutParams p = new WindowManager.LayoutParams(
